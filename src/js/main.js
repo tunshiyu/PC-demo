@@ -5,6 +5,7 @@
     const arrowNode = document.querySelector('.arrow');
     const ulNode=document.querySelector('#content>ul');
     const content=document.getElementById('content');
+    const asideLiNodes = document.querySelectorAll('#asideNav li');
 
     //变量的缓存优化
     let contentHeight=content.offsetHeight;
@@ -15,8 +16,12 @@
 
     //小三角初始化位置
     arrowNode.style.left=navLiNodes[0].getBoundingClientRect().left+navLiNodes[0].offsetWidth/2-arrowNode.offsetWidth/2+'px';
-    //绑定点击头部事件
+    //绑定点击头部事件和侧边点击事件
             for (let i = 0; i < navLiNodes.length; i++) {
+                asideLiNodes[i].onclick = function () {
+                    nowindex=i;
+                    move(nowindex);
+                };
                 navLiNodes[i].onclick = function () {
                     nowindex=i;
                     move(nowindex);
@@ -87,9 +92,11 @@
                     //将所有的class清空
                     for (var j = 0; j < navLiNodes.length; j++) {
                         navLiNodes[j].className = '';
+                        asideLiNodes[j].className = '';
                     }
                     //将当前点击的元素添加active class  navli样式
                     navLiNodes[nowindex].className = 'active';
+                    asideLiNodes[nowindex].className = 'active';
                     //小三角位置
                     arrowNode.style.left=navLiNodes[nowindex].getBoundingClientRect().left+navLiNodes[nowindex].offsetWidth/2-arrowNode.offsetWidth/2+'px';
                     //页面滚动

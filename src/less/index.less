@@ -1,17 +1,28 @@
 @import 'reset';
-
+//公共样式
+//标题
+.common-title{
+  color:#009ee0;
+  font-size:80px;
+  line-height:0.8;
+  font-weight:bold;
+  letter-spacing:-5px;
+}
+.common-text{
+  color:white;
+  line-height:1.5;
+  font-size:15px;
+}
 
 #wrap{
   height: 100%;
   position: relative;
   #header{
-    background: pink;
     position: relative;
     .header-main{
       width: 1100px;
       height: 80px;
       margin: 0 auto;
-      background: deeppink;
       .logo{
         float: left;
         margin-top: 15px;
@@ -64,7 +75,7 @@
     top: 80px;
     bottom: 0;
     right: 0;
-    background-color: #9b9b9b;
+    //background-color: #9b9b9b;
     overflow: hidden;
     &>ul{
       position: absolute;
@@ -72,9 +83,25 @@
       height: 500%;
       top: 0;
       transition: top 1s;
-      li{
+      >li{
         height: 20%;
         position: relative;
+        background-repeat: no-repeat;
+        &:nth-child(1){
+          background-image: url('../images/bg1.jpg');
+        }
+        &:nth-child(2){
+          background-image: url('../images/bg2.jpg');
+        }
+        &:nth-child(3){
+          background-image: url('../images/bg3.jpg');
+        }
+        &:nth-child(4){
+          background-image: url('../images/bg4.jpg');
+        }
+        &:nth-child(5){
+          background-image: url('../images/bg5.jpg');
+        }
         section{
           width: 1100px;
           height: 520px;
@@ -82,12 +109,378 @@
           left: 50%;
           top: 50%;
           transform: translate(-50%,-50%);
-          background-color: skyblue;
+          //background-color: skyblue;
+          //第一屏
+          &.home{
+            .home_carousel{
+              width: 100%;
+              height: 100%;
+              transform-style: preserve-3d;
+              perspective: 1000px;
+              li{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                color: #fff;
+                text-align: center;
+                line-height: 520px;
+                visibility: hidden;
+                &.show{
+                  visibility: visible;
+                }
+                &.leftHide{
+                  visibility: hidden;
+                  animation: leftHide 2s linear;
+                }
+                &.rightShow{
+                  visibility: visible;
+                  animation: rightShow 2s linear;
+                }
+                &.leftShow{
+                  visibility: visible;
+                  animation: leftShow 2s linear;
+                }
+                &.rightHide{
+                  visibility: hidden;
+                  animation: rightHide 2s linear;
+                }
+                &:nth-child(1){
+                  background:#dc6c5f;
+                }
+                &:nth-child(2){
+                  background:#95dc84;
+                }
+                &:nth-child(3){
+                  background:#64b9d2;
+                }
+                &:nth-child(4){
+                  background:#000000;
+                }
+              }
+            }
+            .home_points{
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: 0;
+              li{
+                float: left;
+                width: 20px;
+                height: 20px;
+                background-color:rgba(255,255,255,0.5) ;
+                box-shadow:0 0 4px rgba(25,25,25,0.8) ;
+                border-radius: 50%;
+                margin: 2px;
+                &.active{
+                  background-color:#fff;
+                }
+              }
+            }
+          }
+          &.course{
+            //position: relative;
+            .course-title{
+              margin: 50px;
+            }
+            .course-text{
+              width: 400px;
+              //height: 400px;
+              margin-left: 50px;
+            }
+            .text-list{
+              position: absolute;
+              right: 50px;
+              top: 70px;
+              width: 480px;
+              >li{
+                position: relative;
+                float: left;
+                width: 120px;
+                height: 132px;
+                &:hover{
+                  .front{
+                    transform: rotateY(180deg);
+                    //backface-visibility: hidden;
+                  }
+                  .back{
+                    transform: rotateY(360deg);
+                  }
+                }
+                .front{
+                  width: 100%;
+                  height: 100%;
+                  background-image: url('../images/pcwelt.png');
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  text-align: center;
+                  line-height: 132px;
+                  transition: transform 1s;
+                }
+                .back{
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color:#009ee0 ;
+                  padding: 15px;
+                  box-sizing: border-box;
+                  transform: rotateY(180deg);
+                  backface-visibility: hidden;
+                  transition: transform 1s;
+                }
+              }
+            }
+            .course-line{
+              position: absolute;
+              top: 65px;
+              z-index: 10;
+              width: 9px;
+              height: 410px;
+              background-image: url('../images/plus_row.png');
+              background-repeat: no-repeat;
+              &:nth-of-type(1){
+                right: 521px;
+              }
+              &:nth-of-type(2){
+                right: 405px;
+              }
+              &:nth-of-type(3){
+                right: 285px;
+              }
+              &:nth-of-type(4){
+                right: 165px;
+              }
+              &:nth-of-type(5){
+                right: 45px;
+              }
+            }
+          }
+          &.works{
+            .works-title{
+              margin: 50px 0 100px 50px;
+            }
+            .photo-list{
+              margin-left: 50px;
+              >li{
+                position: relative;
+                float: left;
+                width: 220px;
+                height: 133px;
+                margin: 0 1px;
+                overflow: hidden;
+                &:nth-child(4){
+                  width: 332px;
+                  height: 133px;
+                }
+                &:hover{
+                  img{
+                    transform: rotate(30deg) scale(1.6);
+
+                  }
+                  .mask{
+                    opacity: 1;
+                    >div{
+                      background-position:0 -35px;
+                    }
+                  }
+                }
+                img{
+                  transition: transform 2s;
+                }
+                .mask{
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  color: white;
+                  background-color:rgba(25,25,25,0.8);
+                  padding: 10px;
+                  box-sizing: border-box;
+                  opacity: 0;
+                  transition: opacity 1s;
+                  >div{
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 32px;
+                    height: 34px;
+                    background-image:url("../images/zoomico.png");
+                    transition: background-position 1s;
+                  }
+                }
+              }
+            }
+            .robot{
+              width: 167px;
+              height: 191px;
+              position: absolute;
+              left: 900px;
+              top: 170px;
+              background-image: url("../images/robot.png");
+              animation: robotRun 5s linear infinite;
+            }
+          }
+          &.about{
+            .about-tittle{
+              margin: 50px 0 100px 50px;
+
+              //	线背景:   宽度357px 高度:998px
+              //
+              //	文本框:   宽度260px 高度200px
+              //			边框:5 rgba(255,255,255,0.5)
+              //			圆角:8
+              //			位置偏移: left:750px; top:50px(第一个)
+              //            		left:600px; top:290px(第二个)
+            }
+            .about-text{
+              width: 357px;
+              margin-left: 50px;
+            }
+            .about-lists{
+              position: absolute;
+              width: 260px;
+              height: 200px;
+              border: 5px rgba(255,255,255,0.5) solid;
+              border-radius: 8px;
+              &:nth-of-type(1){
+                left: 750px;
+                top:50px;
+                li{
+                  background-image: url('../images/about1.jpg');
+                }
+              }
+              &:nth-of-type(2){
+                left:600px;
+                top:290px;
+                li{
+                  background-image: url('../images/about3.jpg');
+                }
+              }
+              ul{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                &:hover{
+                  li{
+                    //下 左 右 上
+                    &:nth-child(1){
+                      background-position: 0 100px;
+                    }
+                    &:nth-child(2){
+                      background-position: -260px 0;
+                      //background-position: 100% 0;
+                    }
+                    &:nth-child(3){
+                      background-position: 130px -100px;
+                    }
+                    &:nth-child(4){
+                      background-position: -130px -200px;
+                    }
+                  }
+                }
+                li{
+                  float: left;
+                  width: 50%;
+                  height: 50%;
+                  background-repeat: no-repeat;
+                  transition: background-position 1s;
+                  &:nth-child(1){
+                    background-position: 0 0;
+                  }
+                  &:nth-child(2){
+                    background-position: -130px 0;
+                    //background-position: 100% 0;
+                  }
+                  &:nth-child(3){
+                    background-position: 0 -100px;
+                  }
+                  &:nth-child(4){
+                    background-position: -130px -100px;
+                  }
+                }
+              }
+            }
+            .about-line{
+              position: absolute;
+              right: 188px;
+              top: -13px;
+              z-index: -1;
+              width: 357px;
+              height: 998px;
+              background-image: url('../images/greenLine.png');
+              background-repeat: no-repeat;
+            }
+          }
+          &.team{
+
+            .team-tittle{
+              float: left;
+              margin: 50px;
+              width: 400px;
+            }
+            .team-text{
+              float: right;
+              margin: 50px;
+              width: 400px;
+            }
+            .team-bubble{
+              width: 944px;
+              height: 448px;
+              position: absolute;
+              top: 230px;
+              left: 50%;
+              transform: translateX(-50%);
+              >li{
+                float: left;
+                background-image: url('../images/team.png');
+                width: 25%;
+                height: 100%;
+                &:nth-child(1){
+                  background-position: 3px 0px;
+                }
+                &:nth-child(2){
+                  background-position: -230px 0px;
+                }
+                &:nth-child(3){
+                  background-position: -483px 0px;
+                }
+                &:nth-child(4){
+                  background-position: -710px 0px;
+                }
+              }
+            }
+          }
         }
       }
     }
   }
+  #asideNav{
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    li{
+      width:15px ;
+      height: 15px;
+      border: 1px solid #000;
+      margin-top: 10px;
+      border-radius: 50%;
+      &.active{
+        background: white;
+      }
+    }
+  }
 }
+
+
 /*
   隐藏元素方式：
     1. display: none
@@ -97,3 +490,41 @@
     5. transform: scale(0)
     6. position left -10000px
  */
+//第一屏的动画
+/*
+  点击右边小圆点：
+    左边：向左位移，旋转-30deg，从前面到后面，从显示到隐藏
+    右边：向右位移，旋转30deg，从后面到前面，从隐藏到显示
+ */
+
+@keyframes leftHide {
+  0%{visibility: visible;transform: translateZ(0)}
+  50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+  100%{visibility: hidden;transform: translateZ(-200px);}
+}
+
+@keyframes rightShow {
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+  100%{visibility: visible;transform: translateZ(0)}
+}
+
+@keyframes leftShow {
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+  100%{visibility: visible;transform: translateZ(0)}
+
+}
+
+@keyframes rightHide {
+  0%{visibility: visible;transform: translateZ(0)}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+  100%{visibility: hidden;transform: translateZ(-200px);}
+}
+
+@keyframes robotRun {
+  0%{}
+  49%{transform: translateX(-360px) }
+  50%{transform: translateX(-360px) rotateY(180deg)}
+  100%{transform: translateX(0px) rotateY(180deg)}
+}
