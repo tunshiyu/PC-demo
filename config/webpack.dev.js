@@ -48,7 +48,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|mp3)$/,
         use: [
           {
             loader: 'url-loader',
@@ -56,7 +56,8 @@ module.exports = {
               limit: 8192,   // 8kb以下的图片会做base64处理
               publicPath: '../images',  //修改样式中url图片路径
               outputPath: 'images',  //图片最终输入的路径
-              name: '[hash:10].[ext]'  //hash 文件哈希值（可以指定位数）  ext 文件扩展名
+                 name: '[name].[ext]'
+              // name: '[hash:10].[ext]'  //hash 文件哈希值（可以指定位数）  ext 文件扩展名
             }
           }
         ]

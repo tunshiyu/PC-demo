@@ -31,7 +31,7 @@ const webpack = require('webpack');
 
 module.exports = {
   //入口起点
-  entry: './src/js/index.js',
+  entry:  ['./src/js/index.js', './src/index.html'],
   //输出
   output: {
     path: resolve(__dirname, '../dist'),
@@ -56,19 +56,25 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|mp3)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,   // 8kb以下的图片会做base64处理
-              publicPath: '../images',  //修改样式中url图片路径
+              publicPath: './images',  //修改样式中url图片路径
               outputPath: 'images',  //图片最终输入的路径
               name: '[name].[ext]'  //hash 文件哈希值（可以指定位数）  ext 文件扩展名
             }
           }
         ]
       },
+        {
+            test: /\.(html)$/,
+            use: {
+                loader: 'html-loader',
+            }
+        },
       {
         test: /\.js$/, // 涵盖 .js 文件
         enforce: "pre", // 预先加载好 jshint loader
@@ -82,14 +88,14 @@ module.exports = {
               camelcase: true,
               //jslint 的错误信息在默认情况下会显示为 warning（警告）类信息
               //将 emitErrors 参数设置为 true 可使错误显示为 error（错误）类信息
-              emitErrors: true,
-              //jshint 默认情况下不会打断webpack编译
-              //如果你想在 jshint 出现错误时，立刻停止编译
-              //请设置 failOnHint 参数为true
-              failOnHint: true,
-              esversion: 6
-              // 自定义报告函数
-              // reporter: function(errors) { }
+                emitErrors: false,
+                //jshint 默认情况下不会打断webpack编译
+                //如果你想在 jshint 出现错误时，立刻停止编译
+                //请设置 failOnHint 参数为true
+                failOnHint: false,
+                esversion: 6,
+                loopfunc:true,
+                lastsemic:false
             }
           }
         ]
@@ -115,7 +121,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new ExtractTextPlugin('./css/[hash:10].css'), //提取css成单独文件
+    new ExtractTextPlugin('./[hash:10].css'), //提取css成单独文件
     new CleanWebpackPlugin('./dist', {  //清除指定目录下的所有文件
       root: resolve(__dirname, '../'),
     }),
